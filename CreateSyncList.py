@@ -103,8 +103,10 @@ for shows in TVsection.all():
 
 Playlist.addItems(thefirstlist)
 
-Config.set(playlistName, thefirstlist[0].grandparentTitle)
-Config.set(playlistName, shows.title)
+Config.set(playlistName, 'FirstSyncedShow', thefirstlist[0].grandparentTitle)
+Config.set(playlistName, 'LastSyncedShow', shows.title)
+with open(r'CreateSyncList.cfg', 'wb') as configfile:
+    Config.write(configfile)
 
 print('Episodes added to the Playlist:', TVEpisodes)
 for show in AllEpisodes:
