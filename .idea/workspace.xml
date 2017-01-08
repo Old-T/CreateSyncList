@@ -22,8 +22,8 @@
       <file leaf-file-name="CreateSyncList.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CreateSyncList.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="761">
-              <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+            <state relative-caret-position="172">
+              <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
               <folding>
                 <element signature="e#205#242#0" expanded="true" />
               </folding>
@@ -99,8 +99,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/CreateSyncList.py" />
         <option value="$PROJECT_DIR$/CreateSyncList.cfg" />
+        <option value="$PROJECT_DIR$/CreateSyncList.py" />
       </list>
     </option>
   </component>
@@ -336,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483878647974</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Writes down the updated configuration.&#10;&#10;ToDo: If the list is empty, start with the first show after lastsyncedshow">
+      <created>1483880399672</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1483880399672</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -348,7 +355,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -367,20 +374,26 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added reading values from cfg-file.&#10;A new sync now starts from the first show in the current playlist or if it is empty, the show specified in the cfg-file.&#10;Number of shows to sync is also specified in the cfg-file&#10; &#10; ToDo: Write down the updated configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added reading values from cfg-file.&#10;A new sync now starts from the first show in the current playlist or if it is empty, the show specified in the cfg-file.&#10;Number of shows to sync is also specified in the cfg-file&#10; &#10; ToDo: Write down the updated configuration." />
+    <MESSAGE value="Writes down the updated configuration.&#10;&#10;ToDo: If the list is empty, start with the first show after lastsyncedshow" />
+    <option name="LAST_COMMIT_MESSAGE" value="Writes down the updated configuration.&#10;&#10;ToDo: If the list is empty, start with the first show after lastsyncedshow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/CreateSyncList.py</url>
-          <line>110</line>
+          <line>128</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/CreateSyncList.py</url>
-          <line>107</line>
+          <line>125</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/CreateSyncList.py</url>
+          <line>87</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -390,7 +403,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -489,8 +502,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CreateSyncList.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="761">
-          <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+        <state relative-caret-position="172">
+          <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding>
             <element signature="e#205#242#0" expanded="true" />
           </folding>

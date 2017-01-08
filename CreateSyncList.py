@@ -34,7 +34,7 @@ def ConfigSectionMap(section):
 playlistName = ConfigSectionMap('General')['playlistname']
 numberOfShows2Add = ConfigSectionMap('General')['numberofepisodes2sync']
 
-firstShowToAdd = ConfigSectionMap(playlistName)['firstsyncedshow']
+firstShowToAddAfterThis = ConfigSectionMap(playlistName)['lastsyncedshow']
 
 if playlistName == '':
     print ("No playlist specified. Please add PlaylistName under [General] in CreateSyncList.cfg")
@@ -67,14 +67,22 @@ ExcludeShows = ['24', 'Agatha Raisin', 'The Americans', 'Arne Dahl', 'Better Cal
 # First, clear the current laylist
 # Save the first items show for later usage
 showName = ''
+StartFromCurrent = False
+StartAfterLast = False
 for episode in Playlist.items():
     if(showName == ''):
         showName = episode.grandparentTitle
+        StartFromCurrent = True
     Playlist.removeItem(episode)
 
 # If we still have shows left in the current playlist, start from that show
 if(showName != ''):
     firstShowToAdd = showName
+    StartFromCurrent = True
+else:
+    StartAfterLast = True
+
+BreakOnNext = False
 
 TVsection = plex.library.section('TV')
 for shows in TVsection.all():
@@ -83,10 +91,21 @@ for shows in TVsection.all():
         print('Excluded: ', shows.title)
         continue
 
-    if ((firstShowToAdd != '') and (firstShowToAdd != shows.title)):
-        continue
-    else:
-        firstShowToAdd = ''
+    if(StartFromCurrent):
+        if(firstShowToAdd != shows.title):
+            continue
+        else:
+            StartFromCurrent = False
+
+    if(StartAfterLast):
+        if(firstShowToAddAfterThis != shows.title):
+            continue
+        else:
+            StartAfterLast = False
+
+    if(BreakOnNext):
+        Config.set(playlistName, 'LastSyncedShow', shows.title)
+        break
 
     if(len(shows.episodes()) <= 3):
         for episode in shows.episodes():
@@ -99,12 +118,11 @@ for shows in TVsection.all():
     TVEpisodes += 1;
 
     if(TVEpisodes >= int(numberOfShows2Add)):
-        break
+        BreakOnNext = True
 
 Playlist.addItems(thefirstlist)
 
 Config.set(playlistName, 'FirstSyncedShow', thefirstlist[0].grandparentTitle)
-Config.set(playlistName, 'LastSyncedShow', shows.title)
 with open(r'CreateSyncList.cfg', 'wb') as configfile:
     Config.write(configfile)
 
