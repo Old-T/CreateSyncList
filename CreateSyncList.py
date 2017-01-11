@@ -4,7 +4,7 @@ The playlist contains the first episode of each show in the TV section.
 Shows specified in ExludeShows are not added to the playlist.
 """
 from plexapi.server import PlexServer
-from plexapi.myplex import MyPlexAccount
+#from plexapi.myplex import MyPlexAccount
 import ConfigParser
 
 # plex = PlexServer()
@@ -47,8 +47,6 @@ thefirstlist = [];
 AllEpisodes = [];
 TVEpisodes = 0;
 
-# Playlist = plex.createPlaylist('TestSync',thefirstlist)
-
 # Define the Shows to exclude from the sync list
 ExcludeShows = ['24', 'Agatha Raisin', 'The Americans', 'Arne Dahl', 'Better Call Saul', 'The Big Bang Theory',
                 'The Blacklist', 'The Blacklist: Redemption',
@@ -75,6 +73,7 @@ for episode in Playlist.items():
         StartFromCurrent = True
     Playlist.removeItem(episode)
 
+input("Sync the device to clear all episodes! Press enter when ready.")
 # If we still have shows left in the current playlist, start from that show
 if(showName != ''):
     firstShowToAdd = showName
