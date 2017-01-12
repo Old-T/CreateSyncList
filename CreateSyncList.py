@@ -34,7 +34,7 @@ def ConfigSectionMap(section):
 playlistName = ConfigSectionMap('General')['playlistname']
 numberOfShows2Add = ConfigSectionMap('General')['numberofepisodes2sync']
 
-firstShowToAddAfterThis = ConfigSectionMap(playlistName)['lastsyncedshow']
+startAfterThisShow = ConfigSectionMap(playlistName)['lastsyncedshow']
 
 if playlistName == '':
     print ("No playlist specified. Please add PlaylistName under [General] in CreateSyncList.cfg")
@@ -67,18 +67,20 @@ ExcludeShows = ['24', 'Agatha Raisin', 'The Americans', 'Arne Dahl', 'Better Cal
 showName = ''
 StartFromCurrent = False
 StartAfterLast = False
-for episode in Playlist.items():
-    if(showName == ''):
-        showName = episode.grandparentTitle
-        StartFromCurrent = True
-    Playlist.removeItem(episode)
 
-input("Sync the device to clear all episodes! Press enter when ready.")
+# Check for the last show in the playlist and start adding episodes after that.
+# We don't want to  transcode and sync those again
+for episode in Playlist.items():
+    showName = episode.grandparentTitle
+    StartFromCurrent = True
+    TVEpisodes += 1
+#    Playlist.removeItem(episode)
+
+# answer = input("Sync the device to clear all episodes! Press enter when ready.")
+
 # If we still have shows left in the current playlist, start from that show
 if(showName != ''):
     firstShowToAdd = showName
-    StartFromCurrent = True
-else:
     StartAfterLast = True
 
 BreakOnNext = False
@@ -86,25 +88,23 @@ BreakOnNext = False
 TVsection = plex.library.section('TV')
 for shows in TVsection.all():
     # print(shows.title)
-    if ExcludeShows.count(shows.title) != 0:
-        print('Excluded: ', shows.title)
-        continue
-
     if(StartFromCurrent):
         if(firstShowToAdd != shows.title):
             continue
         else:
             StartFromCurrent = False
+            continue    # Start adding next show
 
-    if(StartAfterLast):
-        if(firstShowToAddAfterThis != shows.title):
-            continue
-        else:
-            StartAfterLast = False
+    if ExcludeShows.count(shows.title) != 0:
+        print('Excluded: ', shows.title)
+        continue
 
-    if(BreakOnNext):
-        Config.set(playlistName, 'LastSyncedShow', shows.title)
-        break
+
+#    if(StartAfterLast):
+#        if(startAfterThisShow != shows.title):
+#            continue
+#        else:
+#            StartAfterLast = False
 
     if(len(shows.episodes()) <= 3):
         for episode in shows.episodes():
@@ -117,11 +117,14 @@ for shows in TVsection.all():
     TVEpisodes += 1;
 
     if(TVEpisodes >= int(numberOfShows2Add)):
-        BreakOnNext = True
+        break
+
 
 Playlist.addItems(thefirstlist)
 
 Config.set(playlistName, 'FirstSyncedShow', thefirstlist[0].grandparentTitle)
+Config.set(playlistName, 'LastSyncedShow', shows.title)
+
 with open(r'CreateSyncList.cfg', 'wb') as configfile:
     Config.write(configfile)
 
