@@ -36,7 +36,8 @@ numberOfShows2Add = ConfigSectionMap('General')['numberofepisodes2sync']
 
 startAfterThisShow = ConfigSectionMap(playlistName)['lastsyncedshow']
 doNotSyncThese = ConfigSectionMap(playlistName)['excludeshows']
-doNotSyncThese = doNotSyncThese.replace('\n','') # Remove the \n from the read string
+doNotSyncThese = doNotSyncThese.replace('\n',' ') # Remove the \n from the read string
+doNotSyncThese = doNotSyncThese.replace(', ',',') # Remove the \n from the read string
 
 ExcludeShows = doNotSyncThese.split(",")
 
@@ -68,13 +69,14 @@ if(showName != ''):
 
 TVsection = plex.library.section('TV')
 for shows in TVsection.all():
-
+    testShowName = shows.title
+    print shows.title, shows.titleSort
     if(StartFromCurrent):
         if(firstShowToAdd == shows.title):
             StartFromCurrent = False
         continue
 
-    if ExcludeShows.count(shows.title) != 0:
+    if shows.title in ExcludeShows:
         print('Excluded: ', shows.title)
         continue
 
