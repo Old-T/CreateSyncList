@@ -69,8 +69,8 @@ if(showName != ''):
 
 TVsection = plex.library.section('TV')
 for shows in TVsection.all():
-    testShowName = shows.title
-    print shows.title, shows.titleSort
+
+
     if(StartFromCurrent):
         if(firstShowToAdd == shows.title):
             StartFromCurrent = False
@@ -80,19 +80,23 @@ for shows in TVsection.all():
         print('Excluded: ', shows.title)
         continue
 
+    episode = shows.episodes()[0]
+
+    if (shows.episodes()[0].seasonNumber == '0'): # Don't sync specials
+        for episode in shows.episodes():
+            strSeason = episode.seasonNumber # We need to explicitly set the seasonNumber to get it right.
+            if( strSeason == '0'):
+                continue
+            thefirstlist.append(episode)
+            TVEpisodes += 1
+
     if(len(shows.episodes()) <= 3):
         for episode in shows.episodes():
             thefirstlist.append(episode)
-            print ("Show: {} - S{}E{} - {}".format(episode.grandparentTitle,
-                                                          episode.seasonNumber,
-                                                          episode.index,
-                                                          episode.title))
             TVEpisodes += 1
         AllEpisodes.append(shows.title)
     else:
         thefirstlist.append(shows.episodes()[0])
-        print ("Show: {} - S{}E{} - {}".format(shows.episodes()[0].grandparentTitle, shows.episodes()[0].seasonNumber,
-                shows.episodes()[0].index, shows.episodes()[0].title))
 
     TVEpisodes += 1;
 
