@@ -59,6 +59,8 @@ StartFromCurrent = False
 # We don't want to  transcode and sync those again
 for episode in Playlist.items():
     showName = episode.grandparentTitle
+    if episode.isWatched:
+        Playlist.removeItem(episode)
     StartFromCurrent = True
     TVEpisodes += 1
 
