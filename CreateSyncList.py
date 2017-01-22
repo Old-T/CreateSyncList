@@ -91,6 +91,8 @@ for shows in TVsection.all():
                 continue
             thefirstlist.append(episode)
             TVEpisodes += 1
+            break
+        continue
 
     if(len(shows.episodes()) <= 3):
         for episode in shows.episodes():
