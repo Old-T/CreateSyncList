@@ -6,15 +6,16 @@ Shows specified in ExludeShows are not added to the playlist.
 from plexapi.server import PlexServer
 #from plexapi.myplex import MyPlexAccount
 import ConfigParser
+import os.path
 
 # plex = PlexServer()
 
-
-baseurl = 'http://192.168.2.50:32400'
-token = 'zbv7hDnHEV2aGKRmQsRd'
-plex = PlexServer(baseurl, token)
 Config = ConfigParser.ConfigParser()
 playlistName = ''
+
+if not os.path.exists('CreateSyncList.cfg'):
+    print 'CreateSyncList.cfg not found'
+    exit()
 
 Config.read('CreateSyncList.cfg')
 
@@ -30,6 +31,10 @@ def ConfigSectionMap(section):
             print("exception on %s!" % option)
             dict1[option] = None
     return dict1
+
+baseurl = ConfigSectionMap('General')['baseurl']
+token = ConfigSectionMap('General')['token']
+plex = PlexServer(baseurl, token)
 
 playlistName = ConfigSectionMap('General')['playlistname']
 numberOfShows2Add = ConfigSectionMap('General')['numberofepisodes2sync']
@@ -59,6 +64,13 @@ StartFromCurrent = False
 # We don't want to  transcode and sync those again
 for episode in Playlist.items():
     showName = episode.grandparentTitle
+
+    # Trim the showName by removing the leading 'A '/'The ' so we can compared to the titleSort
+    if showName.startswith('A '):
+        showName = showName[2:]
+    if showName.startswith('The '):
+        showName = showName[4:]
+
     if episode.isWatched:
         Playlist.removeItem(episode)
     StartFromCurrent = True
@@ -72,9 +84,8 @@ if(showName != ''):
 TVsection = plex.library.section('TV')
 for shows in TVsection.all():
 
-
     if(StartFromCurrent):
-        if(firstShowToAdd == shows.title):
+        if(firstShowToAdd == shows.titleSort or firstShowToAdd.upper() < shows.titleSort.upper()):
             StartFromCurrent = False
         continue
 
