@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1abfc687-89a3-4932-917e-d8c9f60a8d45" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CreateSyncList.cfg" afterPath="$PROJECT_DIR$/CreateSyncList.cfg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CreateSyncList.py" afterPath="$PROJECT_DIR$/CreateSyncList.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -446,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485096741633</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Removed 'A ' and 'The ' from the show.title to be able to add the first show after the last in the list. If the last show in the list wasn't avaiable in Plex any longer, the algorithm failed.">
+      <created>1485341982962</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1485341982962</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -495,7 +500,8 @@
     <MESSAGE value="Testing what TODO causes" />
     <MESSAGE value="Remove watched episodes from the playlist." />
     <MESSAGE value="Special episode was detected and the next non-special episode was added.&#10; Then, the special episode was added to..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Special episode was detected and the next non-special episode was added.&#10; Then, the special episode was added to..." />
+    <MESSAGE value="Removed 'A ' and 'The ' from the show.title to be able to add the first show after the last in the list. If the last show in the list wasn't avaiable in Plex any longer, the algorithm failed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed 'A ' and 'The ' from the show.title to be able to add the first show after the last in the list. If the last show in the list wasn't avaiable in Plex any longer, the algorithm failed." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
